@@ -44,7 +44,7 @@ const basename = path.basename(filePath);
 const absolute = path.resolve(__dirname, 'content', 'subcontent', 'john.txt');
 
 // fs module
-const { readFileSync, writeFileSync, readFile, writeFile } = require('fs');
+const { readFileSync, writeFileSync } = require('fs');
 
 const firstFile = readFileSync('./content/first.txt', 'utf8');
 const secondFile = readFileSync('./content/second.txt', 'utf8');
@@ -99,4 +99,57 @@ const server = http.createServer((req, res) => {
     }
 });
 
-server.listen(3000);
+// server.listen(3000);
+
+// Async Pattern
+const { readFile, writeFile } = require('fs').promises;
+// const util = require('util');
+// const readFilePromise = util.promisify(readFile);
+// const writeFilePromise = util.promisify(writeFile);
+
+const start = async () => {
+    try {
+        // const first = await readFilePromise('./content/first.txt', 'utf8');
+        // const second = await readFilePromise('./content/second.txt', 'utf8');
+        // await writeFilePromise('./content/promise.txt', `Promised by ${first} and ${second}`);
+
+        const first = await readFile('./content/first.txt', 'utf8');
+        const second = await readFile('./content/second.txt', 'utf8');
+        await writeFile('./content/promises.txt', `Promises by fs module ${first} and ${second}`);
+
+        console.log(first, second);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// start();
+
+// Events
+const EventEmitter = require('events');
+
+const customEmitter = new EventEmitter();
+
+customEmitter.on('response', (name, age) => {
+    console.log("Data received.", name, age);
+})
+customEmitter.on('response', () => {
+    console.log("Another data received.");
+})
+
+// customEmitter.emit('response', 'Stephen', 30);
+
+// Practice HTTP Module using EventEmitter
+
+// Streams
+const { createReadStream, createWriteStream } = require('fs');
+
+const stream = createReadStream('./content/big.txt',
+    {
+        highWaterMark: 30000,
+        encoding: 'utf8'
+    });
+
+stream.on('data', (result) => {
+    console.log(result)
+})
