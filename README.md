@@ -1,6 +1,6 @@
 ### Node basics and projects
-1. Node Tutorial
-2. Express Tutorial
+1. Node Basics
+2. Express Basics
 3. Task Manager (MongoDB, Mongoose)
 4. Store API
 5. JWT Basics
