@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Magic Notes</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-dark my-3">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/favicon.png" alt="Magic-Notes" width="55">
+                <h3 style="color:#e48c8b;display: inline;margin-left: 10px;">Magic Notes</h3>
+            </a>
+            <img src="images/toggler-icon.svg" alt="Toggle">
+        </nav>
+
+        <main>
+            <div class="search-bar col-md-6 mx-auto">
+                <h1 class="text-center" style="color:#e48c8b">Welcome To Magic Notes</h1>
+                <div class="search-box my-5">
+                    <form class="d-flex">
+                        <input id="searchText" class="form-control me-2" type="search" placeholder="Search"
+                            aria-label="Search" autocomplete="off">
+                        <button type="search" id="searchBtn" class="btn search-btn">Search</button>
+                    </form>
+                </div>
+            </div>
+            <h2>Add Your Notes</h2>
+            <div id="noteAddSection">
+                <div class="mb-3">
+                    <label for="addTitle" class="form-label">Add a title</label>
+                    <input type="text" class="form-control" id="addTitle" placeholder="Enter a title">
+                </div>
+                <div class="mb-3">
+                    <label for="addTxt" class="form-label">Add a note</label>
+                    <textarea class="form-control" id="addText" rows="3" placeholder="Enter your note"></textarea>
+                </div>
+                <button type="submit" id="addBtn" class="btn search-btn">Add note</button>
+            </div>
+            <div id="noteShowSection">
+                <h2>Your Notes</h2>
+                <hr>
+                <div id="notes" class="row container-fluid">
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

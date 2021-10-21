@@ -1,0 +1,78 @@
+img {
+    cursor: pointer;
+}
+
+#searchBtn {
+    background-color: #f7a8a7;
+    color: white;
+    margin: 0px 10px;
+}
+
+#noteAddSection {
+    border: 2px solid #e48c8b;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+h2 {
+    color: #e48c8b;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label,
+input,
+textarea {
+    color: #f58e8c !important;
+}
+
+#noteShowSection {
+    margin-top: 30px;
+}
+
+#addBtn,
+.deleteBtn {
+    background-color: #f7a8a7;
+    color: white;
+}
+
+.noteCard {
+    border: 2px solid #e48c8b;
+    border-radius: 5px;
+    color: #E48C8B;
+    display: block !important;
+    margin: auto !important;
+}
+
+#searchText:focus,
+#addText:focus,
+#addTitle:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #e48c8b;
+}
+
+#addBtn:focus,
+#searchBtn:focus,
+.deleteBtn:focus {
+    background-color: #f58e8c;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.deleteBtn:hover {
+    color: white !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #CED4DA !important;
+}
+
+.block {
+    display: block !important;
+}
+
+.none {
+    display: none !important;
+}
