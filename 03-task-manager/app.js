@@ -6,12 +6,7 @@ require('dotenv').config();
 
 //middleware
 app.use(express.json());
-
-// routes
-app.get('/', (req, res) => {
-
-});
-
+app.use(express.urlencoded({ extended: false }));
 app.use('/api/v1/tasks', tasks);
 
 const port = 3000;
