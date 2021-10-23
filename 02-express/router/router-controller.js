@@ -1,32 +1,10 @@
-const express = require('express');
 const { people } = require('../data');
-const app = express();
 
-// static assets
-app.use(express.static('../public'));
-// parse form data
-app.use(express.urlencoded({ extended: false }));
-// parse json
-app.use(express.json());
-
-app.post('/', (req, res) => {
-    const { name } = req.body;
-    if (name) {
-        return res
-            .status(200)
-            .send(`<h1>Welcome ${name}</h1>`);
-    }
-
-    res
-        .status(401)
-        .send('<h1>Please Enter Credentials</h1>');
-});
-
-app.get('/people', (req, res) => {
+const getPeople = (req, res) => {
     res.status(200).json({ success: true, data: people });
-});
+}
 
-app.post('/people', (req, res) => {
+const createPerson = (req, res) => {
     const { name } = req.body;
     if (!name) {
         return res
@@ -39,9 +17,9 @@ app.post('/people', (req, res) => {
     return res
         .status(201)
         .json({ success: true, data: { name: name } });
-});
+}
 
-app.put('/people/:id', (req, res) => {
+const updatePerson = (req, res) => {
     const { id } = req.params;
     const { name } = req.body;
 
@@ -69,9 +47,9 @@ app.put('/people/:id', (req, res) => {
             success: true,
             data: newPeople
         });
-});
+}
 
-app.delete('/people/:id', (req, res) => {
+const deletePerson = (req, res) => {
     const { id } = req.params;
 
     const person = people.find((person) => person.id === Number(id));
@@ -93,8 +71,11 @@ app.delete('/people/:id', (req, res) => {
             success: true,
             data: newPeople
         });
-});
+}
 
-app.listen(3000, () => {
-    console.log('Server is listening on port 3000....');
-});
+module.exports = {
+    getPeople,
+    createPerson,
+    updatePerson,
+    deletePerson,
+}
