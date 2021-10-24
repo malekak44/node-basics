@@ -1,22 +1,17 @@
-require('dotenv').config();
-require('express-async-errors');
-
 const express = require('express');
 const app = express();
-
+require('dotenv').config();
+require('express-async-errors');
 const connectDB = require('./db/connect');
 const productsRouter = require('./routes/products');
-
 const notFound = require('./middleware/not-found');
 const errorHandler = require('./middleware/error-handler');
 
 // middleware 
 app.use(express.json());
-
 app.use('/api/v1/products', productsRouter);
 
 // products route
-
 app.use(notFound);
 app.use(errorHandler);
 
