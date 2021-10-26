@@ -1,24 +1,24 @@
 const express = require('express');
 const app = express();
-const tasks = require('./routes/tasks');
-const connectDB = require('./db/connect');
 require('dotenv').config();
+const connectDB = require('./db/connect');
+const router = require('./routes/task');
 const notFound = require('./middleware/not-found');
-const errorHandlerMiddleware = require('./middleware/error-handler');
+const errorHandler = require('./middleware/error-handler');
 
-//middleware
-app.use(express.static('./public'));
+// middleware
 app.use(express.json());
+app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: false }));
-app.use('/api/v1/tasks', tasks);
+app.use('/api/v1/tasks', router);
 app.use(notFound);
-app.use(errorHandlerMiddleware);
+app.use(errorHandler);
 
 const port = process.env.PORT || 3000;
 
 const start = async () => {
     try {
-        connectDB(process.env.MONGO_URI);
+        await connectDB(process.env.MONGO_URI);
         app.listen(port, () => {
             console.log(`Server is listening on port ${port}`);
         });

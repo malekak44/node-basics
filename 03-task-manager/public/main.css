@@ -355,10 +355,15 @@ form> :last-child {
   margin-right: 1.5rem;
 }
 
-.single-task .fa-check-circle {
+.single-task .fa-check-circle,
+.fa-circle {
   font-size: 1rem;
   color: var(--green-dark);
   visibility: hidden;
+}
+
+.single-task .fa-circle {
+  visibility: visible;
 }
 
 .task-completed h5 {
