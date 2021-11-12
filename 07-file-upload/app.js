@@ -11,15 +11,15 @@ const cloudinary = require('cloudinary').v2;
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.CLOUD_API,
-    api_secret: process.env.CLOUD_API_SECRET,
-    secure: true
+    api_secret: process.env.CLOUD_API_SECRET
 });
 
 // middleware
 app.use(express.json());
-app.use('/api/v1/products', router);
 app.use(express.static('./public'));
+app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload({ useTempFiles: true }));
+app.use('/api/v1/products', router);
 app.use(notFound);
 app.use(errorHandler);
 

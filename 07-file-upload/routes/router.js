@@ -5,9 +5,9 @@ const {
     getAllProducts,
     createProduct,
 } = require('../controllers/product');
-const uploadFile = require('../controllers/uploads');
+const uploadFile = require('../controllers/upload');
 
-router.route('/uploads').post(uploadFile);
+router.route('/upload').post(uploadFile);
 router.route('/').get(getAllProducts).post(createProduct);
 
 module.exports = router;

@@ -3,14 +3,29 @@ const formDOM = document.querySelector('.file-form');
 const nameInputDOM = document.querySelector('#name');
 const priceInputDOM = document.querySelector('#price');
 const imageInputDOM = document.querySelector('#image');
-const containerDOM = document.querySelector('.container')
+const containerDOM = document.querySelector('.container');
+let imageValue;
+
+imageInputDOM.addEventListener('change', (e) => {
+  const imageFile = e.target.files[0];
+  const imageData = new FormData();
+  imageData.append('image', imageFile, imageFile.name);
+
+  fetch(`${url}/upload`, {
+    method: 'POST',
+    body: imageData,
+  })
+    .then(res => res.json())
+    .then(data => imageValue = data.secure_url)
+    .catch(error => console.log(error));
+});
 
 formDOM.addEventListener('submit', async (e) => {
   e.preventDefault();
   const nameValue = nameInputDOM.value;
   const priceValue = priceInputDOM.value;
   try {
-    const product = { name: nameValue, price: priceValue};
+    const product = { name: nameValue, price: priceValue, image: imageValue };
     await axios.post(url, product);
     fetchProducts();
   } catch (error) {

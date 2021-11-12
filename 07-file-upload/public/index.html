@@ -12,19 +12,19 @@
 </head>
 
 <body>
-  <form class="form file-form" enctype="multipart/form-data" method="post" action="/api/v1/products">
+  <form class="form file-form">
     <h4>File Upload</h4>
     <div class="form-row">
       <label for="name" class="form-label">Name</label>
-      <input type="text" id="name" class="form-input" value="computer">
+      <input type="text" id="name" class="form-input" value="computer" autocomplete="off">
     </div>
     <div class="form-row">
       <label for="price" class="form-label">Price</label>
-      <input type="number" id="price" class="form-input" value="150.99">
+      <input type="number" id="price" class="form-input" value="150.99" autocomplete="off">
     </div>
     <div class="form-row">
       <label for="image" class="form-label">Image</label>
-      <input type="file" id="image" accept="image/*">
+      <input type="file" name="image" id="image" accept="image/*">
     </div>
     <button type="submit" class="btn btn-block">add product</button>
     </div>
