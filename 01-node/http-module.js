@@ -17,6 +17,9 @@ const server = http.createServer((req, res) => {
     }
 });
 
+console.log(http.METHODS);
+console.log(http.STATUS_CODES);
+
 server.listen(port, hostname, () => {
     console.log(`Server is running at http://${hostname}:${port}`);
 });
