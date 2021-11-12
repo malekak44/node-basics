@@ -11,7 +11,7 @@ const uploadFile = async (req, res) => {
         res.status(StatusCodes.OK).json(result);
     });
 
-    await file.mv('../public/uploads' + file.name, (err, result) => {
+    await file.mv('./public/uploads/' + file.name, (err, result) => {
         if (err) {
            console.log(err);
         }
