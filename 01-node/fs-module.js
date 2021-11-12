@@ -61,3 +61,15 @@ fs.readdir('./content', 'utf8', (err, files) => {
         }
     }
 });
+
+// File Stats
+fs.stat('./content/demo/demo.txt', (err, stats) => {
+    if (err) {
+        console.log(err);
+        return;
+    }
+    console.log(stats.isFile()); //true
+    console.log(stats.isDirectory()); //false
+    console.log(stats.isSymbolicLink()); //false
+    console.log(stats.size); //1024000 = 1MB
+});
