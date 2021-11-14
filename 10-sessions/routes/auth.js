@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
 
 const {
     register,
@@ -10,29 +9,31 @@ const {
 } = require('../controllers/auth');
 
 router
-    .route('/register')
+    .route('/')
     .get((req, res) => {
-        res.sendFile(path.resolve(__dirname, '../public/register.html'));
-    })
-    .post(register);
-
-router
-    .route('/login')
-    .get((req, res) => {
-        res.sendFile(path.resolve(__dirname, '../public/login.html'));
-    })
-    .post(login);
-
-router
-    .route('/dashboard')
-    .get((req, res) => {
-        res.sendFile(path.resolve(__dirname, '../public/dashboard.html'));
+        res.render('dashboard.ejs', { user: req.user });
     });
 
 router
     .route('/user')
     .get(getUser);
 
-router.route('/logout').delete(logout);
+router
+    .route('/register')
+    .get((req, res) => {
+        res.render('register.ejs');
+    })
+    .post(register);
+
+router
+    .route('/login')
+    .get((req, res) => {
+        res.render('login.ejs');
+    })
+    .post(login);
+
+router
+    .route('/logout')
+    .delete(logout);
 
 module.exports = router;

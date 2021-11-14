@@ -1,42 +1,35 @@
 require('dotenv').config();
 require('express-async-errors');
 const express = require('express');
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
+const passport = require('passport');
+const flash = require('express-flash');
 const connectDB = require('./db/connect');
-const authRouter = require('./routes/auth');
-const authMiddleware = require('./middleware/auth');
+const session = require('express-session');
+const router = require('./routes/auth');
 const notFound = require('./middleware/not-found');
 const errorHandler = require('./middleware/error-handler');
+const initializePassport = require('./config/passport');
 
 const app = express();
-const oneDay = 1000 * 60 * 60 * 24;
+app.set('view engine', 'ejs');
+initializePassport(passport);
 
 // middleware
 app.use(express.json());
-app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
+app.use(flash());
 app.use(session({
-    key: 'user_id',
-    secret: process.env.SECRET,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: {
-        httpOnly: true,
-        maxAge: oneDay,
-        sameSite: 'strict',
-        secure: process.env.NODE_ENV === 'production',
-    },
 }));
-app.use(authMiddleware);
-app.use('/auth', authRouter);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(router);
 app.use(errorHandler);
-// app.use(notFound);
+app.use(notFound);
 
 const port = process.env.PORT || 3000;
-
-app.get('/', (req, res) => {
-    res.json(req.session)
-})
 
 const start = async () => {
     try {
